@@ -35,3 +35,14 @@ python dividir_velazquez.py Velazquez.pdf
 
 La Sección I (capítulos 1–4) no se exporta. La Parte 2 (capítulo 61 en adelante)
 sale como un solo bloque, porque no aparecía completa en las capturas del índice.
+
+## Dividir una sección en capítulos
+
+Si algún PDF de sección pesa demasiado, `dividir_seccion.py` lo corta en capítulos.
+Necesita `dividir_velazquez.py` en la misma carpeta (sube los dos a Colab).
+
+```python
+!python dividir_seccion.py "/content/drive/MyDrive/Velazquez_secciones/Seccion_10_X_Quimioterapia_antiinfecciosa_y_antitumoral.pdf" --salida "/content/drive/MyDrive/Velazquez_capitulos_X"
+```
+
+La sección se deduce del nombre del archivo; si lo renombraste, añade `--seccion X`.
