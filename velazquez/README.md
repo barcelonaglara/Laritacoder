@@ -33,5 +33,5 @@ python dividir_velazquez.py Velazquez.pdf
 - `--incluir-preliminares`: exporta también portada, prólogo e índice.
 - `--salida CARPETA`: carpeta donde guardar los PDFs.
 
-La Sección I (capítulos 1–4) y la Parte 2 (capítulo 61 en adelante) salen como
-un solo bloque cada una, porque no aparecían completas en las capturas del índice.
+La Sección I (capítulos 1–4) no se exporta. La Parte 2 (capítulo 61 en adelante)
+sale como un solo bloque, porque no aparecía completa en las capturas del índice.

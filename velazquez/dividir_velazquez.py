@@ -24,12 +24,9 @@ from pathlib import Path
 from pypdf import PdfReader, PdfWriter
 
 # (sección, título, [(capítulo, título, página del libro), ...])
-# La sección I y la Parte 2 no salen completas en las capturas del índice:
-# se exportan como un único bloque cada una.
+# La Sección I (capítulos 1-4) no se exporta. La Parte 2 no sale completa en
+# las capturas del índice, así que se exporta como un único bloque.
 INDICE = [
-    ("I", "Sección I", [
-        (1, "Capítulos 1 a 4", 1),
-    ]),
     ("II", "Sistema nervioso periférico", [
         (5, "Introducción a la farmacología del sistema nervioso autónomo", 95),
         (6, "Sistema nervioso parasimpático: fármacos colinomiméticos", 115),
@@ -168,7 +165,7 @@ def offset_por_texto(reader, max_offset=120):
 def bloques(por_capitulo):
     """Devuelve [(nombre_archivo, página_libro_inicio)] en orden."""
     salida = []
-    for i, (sec, titulo_sec, caps) in enumerate(INDICE, start=1):
+    for i, (sec, titulo_sec, caps) in enumerate(INDICE, start=2):  # empieza en la Sección II
         if por_capitulo:
             for num, titulo, pag in caps:
                 salida.append((f"Cap_{num:02d}_{slug(titulo)}", pag))
@@ -184,7 +181,7 @@ def main():
     parser.add_argument("--salida", default="velazquez_secciones", help="Carpeta de salida")
     parser.add_argument("--offset", type=int, help="página_pdf = página_libro + offset")
     parser.add_argument("--por-capitulo", action="store_true", help="Un PDF por capítulo en vez de por sección")
-    parser.add_argument("--incluir-preliminares", action="store_true", help="Exporta también las páginas previas a la 1")
+    parser.add_argument("--incluir-preliminares", action="store_true", help="Exporta también portada, prólogo e índice")
     args = parser.parse_args()
 
     reader = PdfReader(args.pdf)
